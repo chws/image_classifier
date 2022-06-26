@@ -1,8 +1,9 @@
 import flask
 from flask import Flask, request, render_template
-# from sklearn.externals import joblib
+import joblib
 import numpy as np
-from scipy import misc
+import imageio
+from sklearn.ensemble import RandomForestClassifier
 
 app = Flask(__name__)
 
@@ -25,7 +26,7 @@ def make_prediction():
 
         # 이미지 픽셀 정보 읽기
         # 알파 채널 값 제거 후 1차원 Reshape
-        img = misc.imread(file)
+        img = imageio.imread(file)
         img = img[:, :, :3]
         img = img.reshape(1, -1)
 
@@ -45,6 +46,6 @@ def make_prediction():
 if __name__ == '__main__':
     # 모델 로드
     # ml/model.py 선 실행 후 생성
-    # model = joblib.load('./model/model.pkl')
+    model = joblib.load('./model/model.pkl')
     # Flask 서비스 스타트
     app.run(host='0.0.0.0', port=8000, debug=True)
