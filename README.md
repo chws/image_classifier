@@ -1,6 +1,5 @@
-# Project Title
-
-Image Classifier Web Serivce
+# Image Classifier Web Serivce
+for dogs & cats
 
 ## Description
 
